@@ -14,8 +14,8 @@ import java.util.ArrayList;
 public class GroceriesFileReader
 {
     /**
-     *
-     * @param filePath          Location of the input file
+     * Reads csv file and return ArrayList as output
+     * @param filePath     Location of the input file
      * @return an arrayList of price (Double)
      */
     public ArrayList<Double> readFile(String filePath)
