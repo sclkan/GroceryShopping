@@ -1,0 +1,15 @@
+apple,7.5
+kiwi,10.50
+pork,23
+chicken,11
+sushi,30
+juice,4
+milk,6
+ramen,8
+cookies,3.5
+candy,1
+bread,4.5
+icecream,9
+beef,15
+chocolate,6
+strawberry,12
