@@ -7,6 +7,7 @@ import java.util.ArrayList;
 
 /**
  * Class to read input file that contains prices of different grocery items
+ * and store each price as an array list
  * @author Sean Kan
  *
  */
