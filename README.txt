@@ -28,7 +28,7 @@ src/subsetsum/ShoppingBag.java
     - Creates an object of type subset sum to find a best possible shopping list within budget
 
 src/subsetsum/SubsetSum.java
-    - Finds the best combination of prices within the given budget
+    - Finds the best combination of prices/songs within the given target
 
 resources/groceries.txt
     - List of groceries and their corresponding prices
@@ -42,7 +42,7 @@ resources/music_genre_subset.json
     - List of songs with genre, artist name, title, duration and song id
 
 resources/RUN.txt
-    - console output of ShoppingBag.java
+    - console output of ShoppingBag.java and FoothillTunesStore.java
 
 README.txt
     - description of submitted files
