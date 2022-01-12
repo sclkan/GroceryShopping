@@ -1,38 +1,47 @@
 package subsetsum;
+import cs1c.SongEntry;
 import java.util.ArrayList;
 
 /**
- * Find the best combination of prices given by budget
+ * Find the best combination of prices/songs given by budget/duration
  * @author Sean Kan
  *
  */
 public class SubsetSum
 {
+
     /**
-     *Provides sum of given ArrayList
+     * Provides sum of given ArrayList
+     *
      * @param list     ArrayList
      * @return sum of ArrayList (double)
      */
-    private static double sum(ArrayList<Double> list)
+    private static <T>double sum(ArrayList<T> list)
     {
         double sum = 0;
+        for (Object i : list)
+        {
+            if(i instanceof Double)
+                sum = (Double) i + sum;
 
-        for(Double i:list)
-            sum+=i;
+            else if(i instanceof SongEntry)
+                sum = ((SongEntry) i).getDuration() + sum;
+        }
         return sum;
     }
 
     /**
      * Finds the max value of collection
+     *
      * @param list     Collection of prices which is an ArrayList of ArrayList
      * @return list with the largest sum
      */
-    private static ArrayList<Double> max(ArrayList<ArrayList<Double>> list)
+    private static <T>ArrayList<T> max(ArrayList<ArrayList<T>> list)
     {
-        double max=0;
-        int maxIndex=0;
+        double max = 0;
+        int maxIndex = 0;
 
-        for(int i = 0; i<list.size();i++)
+        for (int i = 0; i < list.size(); i++)
         {
             if (sum(list.get(i)) > max)
             {
@@ -41,18 +50,18 @@ public class SubsetSum
             }
         }
         return list.get(maxIndex);
-
     }
 
     /**
-     * Finds the most appropriate set closest to the budget without going over
+     * Finds grocery list closest to the given budget without going over
+     *
      * @param input     ArrayList of prices of grocery items
-     * @param budget     budget given by user
-     * @return best matching combo
+     * @param budget    budget given by user
+     * @return best combination of prices
      */
     public static ArrayList<Double> findSubset(ArrayList<Double> input, double budget)
     {
-        if (budget >= sum(input) )
+        if (budget >= sum(input))
         {
             return input;
         }
@@ -80,6 +89,51 @@ public class SubsetSum
 
                     //Break and return set if there is an exact match
                     else if (sum(currentSubset) + input.get(i) == budget)
+                    {
+                        currentSubset.add(input.get(i));
+                        return currentSubset;
+                    }
+                    currentSubset.clear();
+                }
+            }
+            return max(col);
+        }
+    }
+
+    /**
+     * Finds playlist that is closest to the given duration without going over
+     * @param input     ArrayList of songs with genre, artist name, title, duration and song id
+     * @param duration     duration given by user
+     * @return best combination of songs
+     */
+    public static ArrayList<SongEntry> findSubsetOfSongs(ArrayList<SongEntry> input, double duration)
+    {
+        if (duration >= sum(input))
+        {
+            return input;
+        }
+        else
+        {
+            ArrayList<ArrayList<SongEntry>> col = new ArrayList<>();
+            ArrayList<SongEntry> currentSubset = new ArrayList<>();
+            col.add(currentSubset);
+
+            for (int i = 0; i < input.size(); i++)
+            {
+                int colSize = col.size();
+                for (int j = 0; j < colSize; j++)
+                {
+                    currentSubset.addAll(col.get(j));
+                    double sum = 0;
+                    if (sum(currentSubset) + input.get(i).getDuration() < duration)
+                    {
+                        ArrayList<SongEntry> copy = (ArrayList<SongEntry>) currentSubset.clone();
+                        copy.add(input.get(i));
+                        col.add(copy);
+                    }
+
+                    //Break and return set if there is an exact match
+                    else if (sum(currentSubset) + input.get(i).getDuration() == duration)
                     {
                         currentSubset.add(input.get(i));
                         return currentSubset;
