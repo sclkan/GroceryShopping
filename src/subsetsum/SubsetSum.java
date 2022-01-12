@@ -14,7 +14,7 @@ public class SubsetSum
      * Provides sum of given ArrayList
      *
      * @param list     ArrayList
-     * @return sum of ArrayList (double)
+     * @return sum of ArrayList as double
      */
     private static <T>double sum(ArrayList<T> list)
     {
@@ -33,7 +33,7 @@ public class SubsetSum
     /**
      * Finds the max value of collection
      *
-     * @param list     Collection of prices which is an ArrayList of ArrayList
+     * @param list     Collection of prices/songs which is an ArrayList of ArrayList
      * @return list with the largest sum
      */
     private static <T>ArrayList<T> max(ArrayList<ArrayList<T>> list)
